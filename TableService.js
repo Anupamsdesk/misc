@@ -3,19 +3,7 @@ function TableService() {
     'use strict';
     var tables = {},clone,tableOptions,destroyAllTables;
     
-    //Don't use your own clone() use clone() provided by UnderscoreJS
-     clone = function(obj) {
-        var copy, attr;
-        if (null === obj || "object" !== typeof obj)
-            {return obj;}
-        copy = obj.constructor();
-        for (attr in obj) {
-            if (obj.hasOwnProperty(attr)){
-                copy[attr] = obj[attr];
-            }
-        }
-        return copy;
-    }; 
+    
     /* Table options have been hard-coded here... it might not be neccessary */
     tableOptions = {
         "bLengthChange" : false,
