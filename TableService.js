@@ -2,6 +2,8 @@
 function TableService() {
     'use strict';
     var tables = {},clone,tableOptions,destroyAllTables;
+    
+    //Don't use your own clone() use clone() provided by UnderscoreJS
      clone = function(obj) {
         var copy, attr;
         if (null === obj || "object" !== typeof obj)
@@ -14,6 +16,7 @@ function TableService() {
         }
         return copy;
     }; 
+    /* Table options have been hard-coded here... it might not be neccessary */
     tableOptions = {
         "bLengthChange" : false,
         "bFilter" : false,
@@ -23,7 +26,10 @@ function TableService() {
         "fnDestroy" : true,
         "aaSorting" : [[0, "asc"]],
         "bJQueryUI" : false,
-        "fnDrawCallback" : function(oSettings) {
+        "fnDrawCallback" : 
+        
+        /* WARNING: DONT MANIPULATE DOM - skip this part if not absolutely neccessary*/
+        function(oSettings) {
             var i, catgValue, priorityValue;
             for ( i = 0; i < oSettings.aoData.length; i+=1) {
                 catgValue = oSettings.aoData[i]._aData[1];
@@ -38,6 +44,8 @@ function TableService() {
             }
         }
     }; 
+    
+    //destroy all tables
     destroyAllTables = function() {
         var keys = Object.keys(tables), key;
         keys.forEach(function(key, index) {
@@ -47,6 +55,8 @@ function TableService() {
         });
         tables = {};
     };
+    
+    //add a new table
     function addTable(tablename, opendata, columns) {
         var i, j, table, arr = [], dataarray = [], createOptions;
 
