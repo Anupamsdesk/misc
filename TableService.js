@@ -2,7 +2,7 @@
 function TableService() {
     'use strict';
     var tables = {},clone,tableOptions,destroyAllTables;
-    
+    //use clone from underscore.js
     
     /* Table options have been hard-coded here... it might not be neccessary */
     tableOptions = {
@@ -61,6 +61,7 @@ function TableService() {
         if (tables[tablename]) {
             tables[tablename].fnDestroy();
         }
+        //This is not a good way to do it.. but then you have to call dataTable() constructor somewhere.
         table = $('#' + tablename + ' table').dataTable(createOptions);
         tables[tablename] = table;
     }
